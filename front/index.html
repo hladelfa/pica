@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="picaApp" ng-controller="picaController">
+<head>
+	<meta charset="UTF-8">
+	<title>Pica</title>
+
+</head>
+<body>
+
+	<input type="button" value="Jugador 1" ng-click="crearJugador()" ng-disabled="getStatus()" > {{jugador1.name}} {{jugador1.status}}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+	<script src="pica-controller.js"></script>
+
+</body>
+</html>
