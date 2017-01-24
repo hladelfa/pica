@@ -25,6 +25,12 @@ angular.module('picaApp', [])
 			console.log($scope.jugador2.cocina[0]);
 			if(lista[0] == $scope.jugador2.cocina[0]){
 				console.log('Esta');
+				lista.splice(0,1);
+				$scope.jugador2.cocina.splice(0,1);
+				$http.put('/atacar/'+numero+'?cocina='+$scope.jugador2.cocina)
+				.success(function(response) {
+					console.log(response);
+				});
 			}	
 			console.log($scope.jugador2);
 		}, function errorCallback(response) {

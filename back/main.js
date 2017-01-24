@@ -85,7 +85,8 @@ app.route('/jugador/:id')
 			jugadorx.name = req.query.name;
 			//pasar como parametro
 			jugadorx.status = 'Listo';
-			jugadorx.cocina = req.query.cocina;
+			jugadorx.cocina = req.query.cocina.split(',');
+			console.log(jugadorx.cocina);
 			jugadorx.save(function (err, userObj) {
 				if (err) {
 					console.log(err);
@@ -101,22 +102,30 @@ app.route('/jugador/:id')
     res.send('Update the book');
 });
 
-//app.route('/atacar/:id')
+app.route('/atacar/:id')
 
-  //.get(function(req, res) {
+  .put(function(req, res) {
 	
-	//Jugador.findOne({ id: req.params.id }, function (err, jugadorx) {
-	//	if (err) {
-	//		console.log(err);
-	//	} else if (jugadorx) {
-	//		console.log('Found:', jugadorx);
-	//		res.status(200).send(jugadorx);
-	//	} else {
-	//		console.log('Player not found!');
-	//	}
-	//})
+	Jugador.findOne({ id: req.params.id }, function (err, jugadorx) {
+		if (err) {
+			console.log(err);
+		} else if (jugadorx) {
+			console.log('ATACAR');
+			jugadorx.cocina = req.query.cocina.split(',');
+			jugadorx.save(function (err, userObj) {
+				if (err) {
+					console.log(err);
+				} else {
+					console.log('saved successfully:', userObj);
+				}
+			});
+		} else {
+			console.log('Player not found!');
+		}
+	})
 	
+	res.send('Update the book');
 	
 	//console.log(jugador);
 	//res.status(200).send(jugador);
-  //});
+  });
